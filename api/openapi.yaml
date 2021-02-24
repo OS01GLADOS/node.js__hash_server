@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: server
+  version: "1.2"
+servers:
+- url: https://virtserver.swaggerhub.com/OS01GLADOS/simple_server/1.2
+  description: SwaggerHub API Auto Mocking
+- url: http://127.0.0.1:8080
+paths:
+  /:
+    get:
+      tags:
+      - lr1
+      operationId: rootGET
+      responses:
+        "200":
+          description: dfs
+          content:
+            text/html:
+              schema:
+                type: string
+                x-content-type: text/html
+      x-swagger-router-controller: Lr1
+  /hash:
+    post:
+      tags:
+      - lr1
+      operationId: hashPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Data'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hash'
+      x-swagger-router-controller: Lr1
+components:
+  schemas:
+    Data:
+      type: object
+      properties:
+        data:
+          type: string
+    Hash:
+      type: object
+      properties:
+        hash:
+          type: string
+      example:
+        hash: hash
